@@ -1,0 +1,53 @@
+This build comes with a starter template.
+What we want to acheive here is to trigger an action uopn the press of a button.
+When a button is pressed down, there's a corresponding sound reaction plus a css action on the button.
+To build this, we go into the HTML file and inside the script tags write our JS code.
+
+First we write a simple script to test the action on the entire window.
+window.addEventListener('keydown', function(e){
+ console.log(e)
+});
+What the above script is saying is that whenever you trigger a keyboard action, it
+will log to the console the object attr of the key you just hit. This is a callback function on the window object
+
+Next we have to check that each audio file is selected per key by triggering the query selector for each key.
+We update the previous code snippet to replect this:
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+console.log(audio);
+When a key is triggered now, it will log the corresponding audio file to the console
+
+What we then do next is to ensure that when a key is clicked the corresponding audio file is triggered.
+Updating the previous code, we then have
+if(!audio) return;
+audio.play();
+If !audio returns false, don't do anything
+The play() is a Javascript object
+If you hit a key in succesion at this stage it doesn't replay
+
+To fix the replay we add this line:
+audio.currentTime() = 0;
+
+To trigger the key action button, we have to check that they .key class is being associated with each key via the console
+const key = document.querySelector(`.key[data-key"${e.keyCode}"]`);
+....
+console.log(key);
+
+We add this line to trigger the .playing class. Recall we are using VanillaJS
+key.classList('playing');
+
+N.B: Click events are used to trigger actions. Event like add click remove transitionend
+
+Adding this line.
+const key = document.querySelectorAll('.key');
+causes the css class key to called on all keys
+
+To remove transition on each key:
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+Put the playSoun function in its own codeblock and move the windows event listener to the end of the page.
+
+In this build we learned:
+Key events
+playing audio
+transition addEventListener
+Animation events
