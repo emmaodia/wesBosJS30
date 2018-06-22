@@ -1,0 +1,20 @@
+first we work on the .hand class and change the transition of thw clock hands.
+The codes which will show the interactivity of the clock hands as it rotates.
+
+transform-origin: 100%;
+transform: rotate(90deg);
+transition: all 0.05s;
+transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+
+After adding the piece of code, we progress to writing the JavaScript code.
+
+function setDate(){
+const now = new Date();
+const seconds = now.getSeconds();
+const secondsDegrees = ((seconds / 60) * 360);
+console.log seconds
+}
+
+setInterval(setDate, 1000)
+
+given the above code block,, setInterval is a JavaScript method. When it is run, it calls set date a time of 1000ms which is about a second for it to process.
