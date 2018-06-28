@@ -1,0 +1,118 @@
+This is Vanilla JS and we will be studying array methods! Yayyy!
+
+1. Array.prototype.filter()
+Filter the list of inventors for those who were born in the 1500's
+
+The logic here is this: Apparently someone born in the 1500s will definitely be < 1600s birth year!
+
+const bornInFiften = inventors.filter((inventor) => {
+  if(inventor.year >= 1500 && inventor.year < 1600){
+    return true;
+  }
+});
+
+console.table(bornInFiften);
+
+The code loops throughs the array and returns the relevant data. There is no need to use an else statement.
+Except you maybe want to indicate an absence of such info in the date in which charset
+
+}else{
+  return "There's no one born in the timeline here!"
+}
+
+We can write the entire logic in one line of code using es6:
+
+const bornInFiften = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600));
+
+The filter method basically uses a loop construct to filter through an array of items and based on the passed
+in logic returns a relevant set of results. Filter can take in a list of items and return less the original number.
+
+console.table(); is also a new method here. It simply shows you data presented in a tabular format.
+
+2.  Array.prototype.map()
+Give us an array of the inventors' first and last names
+
+  const fullnames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+
+  console.log(fullnames);
+
+The map method returns edited data! That's it! You have a log log book with multiple sections and
+you want just a few of those items, use the map method call to bring up those items.
+
+3. Array.prototype.sort()
+Sort the inventors by birthdate, oldest to youngest
+const ordered = inventors.sort(function(a, b){
+  if (a.year > b.year){
+    return 1;
+  }else{
+    return -1;
+  }
+});
+
+console.table(ordered);
+
+The sort method is used to arrange a list of array items in a particular order by having (a, b) comparison function.
+Then using a function we can return an ordered listing of items. Tip: Try this method of arranging name alphabetically.
+
+We can rewrite the above code in a single line using the tenary operator.
+const ordered = inventors.sort((a, b) => a.year > b.year ? 1: -1);
+
+This just looks too good to be true!
+
+4. Array.prototype.reduce()
+How many years did all the inventors live?
+There's an old way to do this thus:
+var totalYears = 0;
+for (var i = 0; i < inventors.length; i++){
+  totalYears += inventors[i].year
+}
+
+console.log(totalYears);
+
+Man, that method was hell back in the day!
+
+We can easily achieve it with this code:
+const totalYears = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0);
+
+console.log(totalYears);
+
+/ 5. Sort the inventors by years lived
+const oldest = inventors.sort(function(a, b){
+  const lastGuy = a.passed - a.year;
+  const nextGuy = b.passed - b.year;
+  (a.passed)
+  if(lastGuy > nextGuy) {
+    return -1;
+  }else{
+    return 1;
+  }
+}
+);
+
+console.table(oldest);
+
+This is a sort method with a little difference from the first one above.
+We can throw in a tenary operator and rewrite the code like so :
+return lastGuy > nextGuy ? -1 : 1;
+This covers for the entire if block!
+
+EXTRA ACTIVITY: Calculate their individual ages!
+
+7. sort Exercise
+Sort the people alphabetically by last name
+
+8. Reduce Exercise
+Sum up the instances of each of these
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+const transportation = data.reduce((obj, item) =>{
+  if(!obj[item]){
+    obj[itme]= 0;
+  }
+  obj[item]++;
+  return obj;
+});
+
+console.log(transportation);
